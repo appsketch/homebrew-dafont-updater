@@ -4,6 +4,7 @@ namespace Updater\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Updater\Events\UpdaterInitializeTriggered;
 use Updater\Updater\Alphabet;
 
 class UpdaterInitialize extends Command
@@ -39,6 +40,14 @@ class UpdaterInitialize extends Command
      */
     public function handle()
     {
+        // All the folders.
+        $folders = Alphabet::uppercased();
 
+        // Loop through each folder.
+        foreach($folders as $folder)
+        {
+            // Fire the event.
+            event(new UpdaterInitializeTriggered($folder));
+        }
     }
 }

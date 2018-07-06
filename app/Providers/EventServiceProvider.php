@@ -4,6 +4,8 @@ namespace Updater\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Updater\Events\UpdaterInitializeTriggered;
+use Updater\Listeners\CreateAlphabetDirectory;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,9 +15,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Updater\Events\Event' => [
-            'Updater\Listeners\EventListener',
-        ],
+        UpdaterInitializeTriggered::class => [
+            CreateAlphabetDirectory::class
+        ]
     ];
 
     /**
@@ -26,7 +28,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
     }
 }
