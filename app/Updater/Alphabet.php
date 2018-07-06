@@ -14,18 +14,18 @@ class Alphabet
     {
         // Generate an alphabet array.
         $alphabet = range('a', 'z');
-        
+
         // Check if the hashtag is needed.
         if ($hashtag)
         {
             // Add the hashtag to the array.
             array_push($alphabet, '#');
         }
-        
+
         // Return the array.
         return $alphabet;
     }
-    
+
     /**
      * Get the alphabet array uppercased.
      * 
