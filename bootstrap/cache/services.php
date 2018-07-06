@@ -26,10 +26,11 @@
     22 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     23 => 'Laravel\\Tinker\\TinkerServiceProvider',
     24 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    25 => 'App\\Providers\\AppServiceProvider',
-    26 => 'App\\Providers\\AuthServiceProvider',
-    27 => 'App\\Providers\\EventServiceProvider',
-    28 => 'App\\Providers\\RouteServiceProvider',
+    25 => 'Updater\\Providers\\AppServiceProvider',
+    26 => 'Updater\\Providers\\AuthServiceProvider',
+    27 => 'Updater\\Providers\\EventServiceProvider',
+    28 => 'Updater\\Providers\\RouteServiceProvider',
+    29 => 'Updater\\Providers\\GitPHPServiceProvider',
   ),
   'eager' => 
   array (
@@ -44,10 +45,11 @@
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    11 => 'App\\Providers\\AppServiceProvider',
-    12 => 'App\\Providers\\AuthServiceProvider',
-    13 => 'App\\Providers\\EventServiceProvider',
-    14 => 'App\\Providers\\RouteServiceProvider',
+    11 => 'Updater\\Providers\\AppServiceProvider',
+    12 => 'Updater\\Providers\\AuthServiceProvider',
+    13 => 'Updater\\Providers\\EventServiceProvider',
+    14 => 'Updater\\Providers\\RouteServiceProvider',
+    15 => 'Updater\\Providers\\GitPHPServiceProvider',
   ),
   'deferred' => 
   array (

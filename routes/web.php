@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    dd(resolve(Updater\Repositories\GitPHPRepository::class)->hasChanges());
 });
