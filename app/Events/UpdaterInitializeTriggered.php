@@ -14,15 +14,10 @@ class UpdaterInitializeTriggered
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $folder;
-
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($folder)
-    {
-        $this->folder = $folder;
-    }
+    public function __construct() {}
 }

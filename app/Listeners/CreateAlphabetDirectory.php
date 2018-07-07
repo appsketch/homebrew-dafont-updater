@@ -28,7 +28,14 @@ class CreateAlphabetDirectory
      */
     public function handle(UpdaterInitializeTriggered $event)
     {
-        // Create the directory if it doens't exists.
-        Directory::createDirectory(ENV('HOMEBREW_DAFONT_ZIP_DIRECTORY') . DIRECTORY_SEPARATOR . $event->folder);
+        // All the folders.
+        $folders = Directory::alphabet();
+
+        // Loop through each folder.
+        foreach($folders as $folder)
+        {
+            // Create the directory if it doens't exists.
+            Directory::createDirectory(ENV('HOMEBREW_DAFONT_ZIP_DIRECTORY') . DIRECTORY_SEPARATOR . $folder);
+        }
     }
 }
