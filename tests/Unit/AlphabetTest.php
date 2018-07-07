@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use Updater\Updater\Alphabet;
+use Updater\Updater\Directory;
 
 class AlphabetTest extends TestCase
 {
@@ -17,9 +17,7 @@ class AlphabetTest extends TestCase
      */
     public function testAlphabetLength()
     {
-        $this->assertCount(26, Alphabet::alphabet(false));
-        $this->assertCount(27, Alphabet::alphabet());
-        $this->assertCount(26, Alphabet::uppercased(false));
-        $this->assertCount(27, Alphabet::uppercased());
+        $this->assertCount(27, Directory::alphabet());
+        $this->assertCount(26, Directory::alphabet(true, false));
     }
 }

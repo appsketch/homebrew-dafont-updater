@@ -5,6 +5,7 @@ namespace Updater\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use Updater\Repositories\GitPHPRepository;
+use Updater\Updater\Directory;
 
 class GitPHPServiceProvider extends ServiceProvider
 {
@@ -28,7 +29,7 @@ class GitPHPServiceProvider extends ServiceProvider
         $this->app->singleton(GitPHPRepository::class, function ($app) {
 
             // Git folder in local storage.
-            $path = storage_path('app/' . ENV('HOMEBREW_DAFONT_DIRECTORY'));
+            $path = Directory::repositoryPath();
 
             // Return Git PHP object.
             return is_dir($path) ? new GitPHPRepository($path) : GitPHPRepository::cloneRepository(env('HOMEBREW_DAFONT_GITHUB_REPOSITORY'), $path);

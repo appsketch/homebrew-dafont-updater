@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use Updater\Updater\Directory;
 
-class CreateAlphabetDirectory
+class CreateCasksDirectory
 {
     /**
      * Create the event listener.
@@ -28,7 +28,7 @@ class CreateAlphabetDirectory
      */
     public function handle(UpdaterInitializeTriggered $event)
     {
-        // Create the directory if it doens't exists.
-        Directory::createDirectory(ENV('HOMEBREW_DAFONT_ZIP_DIRECTORY') . DIRECTORY_SEPARATOR . $event->folder);
+        // Create the Casks directory if it doens't exists.
+        Directory::createDirectory(ENV('HOMEBREW_DAFONT_GIT_DIRECTORY') . '/Casks');
     }
 }

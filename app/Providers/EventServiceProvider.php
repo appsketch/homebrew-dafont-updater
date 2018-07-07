@@ -4,8 +4,11 @@ namespace Updater\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+
 use Updater\Events\UpdaterInitializeTriggered;
+
 use Updater\Listeners\CreateAlphabetDirectory;
+use Updater\Listeners\CreateCasksDirectory;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,7 +19,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         UpdaterInitializeTriggered::class => [
-            CreateAlphabetDirectory::class
+            CreateAlphabetDirectory::class,
+            CreateCasksDirectory::class
         ]
     ];
 
