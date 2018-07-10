@@ -2,6 +2,8 @@
 
 namespace Updater\Updater;
 
+use GuzzleHttp\Client;
+
 class URL
 {
     // Dafont base URL.
@@ -113,13 +115,37 @@ class URL
     }
 
     /**
-     * Generate the URL.
+     * Generate the font url.
      * 
-     * @return string  The URL as a string.
+     * @return object
      */
-    public function generate()
+    public function font($font)
     {
-        // Generate the URL and return it.
-        return $this->url . '?' . http_build_query($this->query);
+        // Set the font url.
+        $this->url = Self::$DAFONT_URL . $font . '.font';
+
+        // Clear the queries
+        $this->query = [];
+
+        // Rerturn the object
+        return $this;
+    }
+
+    /**
+     * request the URL.
+     * 
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function request()
+    {
+        // Generate the client.
+        $client = new Client([
+            'base_uri' => $this->url
+        ]);
+
+        // Return Guzzle request.
+        return $client->request('GET', '', [
+            'query' => $this->query
+        ]);
     }
 }
