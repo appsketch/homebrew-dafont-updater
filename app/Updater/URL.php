@@ -14,12 +14,12 @@ class URL
      * 
      * @var  array
      */
-    private $query;
+    private $query = [];
 
     /**
      * The URL without the query string.
      * 
-     * @var  array
+     * @var  string
      */
     private $url;
 
@@ -122,7 +122,7 @@ class URL
     public function font($font)
     {
         // Set the font url.
-        $this->url = Self::$DAFONT_URL . $font . '.font';
+        $this->url = Self::$DAFONT_URL . $font;
 
         // Clear the queries
         $this->query = [];
