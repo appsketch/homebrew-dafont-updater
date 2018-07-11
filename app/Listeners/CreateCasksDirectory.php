@@ -29,6 +29,6 @@ class CreateCasksDirectory
     public function handle(UpdaterInitializeTriggered $event)
     {
         // Create the Casks directory if it doens't exists.
-        Directory::createDirectory(ENV('HOMEBREW_DAFONT_GIT_DIRECTORY') . '/Casks');
+        Directory::createDirectory(ENV('HOMEBREW_DAFONT_GIT_DIRECTORY') . DIRECTORY_SEPARATOR . 'Casks');
     }
 }
