@@ -6,7 +6,6 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 use Updater\Console\Commands\UpdaterInitialize;
-use Updater\Console\Commands\UpdaterUpdate;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,7 +16,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         UpdaterInitialize::class,
-        UpdaterUpdate::class,
     ];
 
     /**
@@ -28,8 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(UpdaterUpdate::class)
-            ->dailyAt('2:00');
+        //
     }
 
     /**
