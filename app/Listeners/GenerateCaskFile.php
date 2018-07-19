@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Updater\Updater\Directory;
 use Updater\Events\FontsInFolderListed;
 
-class GenerateCaskFile
+class GenerateCaskFile implements ShouldQueue
 {
     /**
      * Handle the event.
