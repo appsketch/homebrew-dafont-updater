@@ -19,7 +19,7 @@ class HandleCrawlPageCount
      * 
      * @var  string
      */
-    public $lettre = 'a';
+    public $lettre;
 
     /**
      * Create a new event instance.

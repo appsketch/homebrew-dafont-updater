@@ -16,26 +16,26 @@ class ReceivedPageCount
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * The lettre to crawl.
-     */
-    public $lettre = 'a';
-
-    /**
      * The amount of pages to crawl.
      */
-    public $amountOfPages = 1;
+    public $amountOfPages;
+
+    /**
+     * The lettre to crawl.
+     */
+    public $lettre;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($lettre, $amountOfPages)
+    public function __construct($amountOfPages, $lettre = null)
     {
-        // Set the lettre to crawl.
-        $this->lettre = $lettre;
-
         // Set the amount of pages to crawl.
         $this->amountOfPages = $amountOfPages;
+
+        // Set the lettre to crawl.
+        $this->lettre = $lettre;
     }
 }

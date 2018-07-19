@@ -58,7 +58,7 @@ class CrawlPageCount implements ShouldQueue
             $pageCount = intval($crawler->text());
 
             // Trigger the event.
-            event(new ReceivedPageCount($event->lettre, $pageCount));
+            event(new ReceivedPageCount($pageCount, $event->lettre));
         }
     }
 

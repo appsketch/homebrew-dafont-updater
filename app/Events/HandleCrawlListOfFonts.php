@@ -17,12 +17,12 @@ class HandleCrawlListOfFonts
     /**
      * The lettre to crawl.
      */
-    public $lettre = 'a';
+    public $lettre;
 
     /**
      * The page to crawl.
      */
-    public $page = 1;
+    public $page;
 
     /**
      * Create a new event instance.

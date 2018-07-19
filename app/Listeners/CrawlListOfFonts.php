@@ -34,7 +34,7 @@ class CrawlListOfFonts implements ShouldQueue
     public function handle($event)
     {
         // Check if property lettre exists.
-        if (property_exists($event, 'lettre'))
+        if (isset($event->lettre))
         {
             // Set the lettre to crawl.
             $this->url->alpha($event->lettre);

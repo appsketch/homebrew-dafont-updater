@@ -9,7 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Updater\Models\Cask;
+use Illuminate\Support\Facades\Log;
 
 class UpdaterCronjobTriggered
 {
@@ -20,5 +20,9 @@ class UpdaterCronjobTriggered
      *
      * @return void
      */
-    public function __construct() {}
+    public function __construct()
+    {
+        // Log information.
+        Log::info('[EVENT] [CRONJOB] event triggered');
+    }
 }

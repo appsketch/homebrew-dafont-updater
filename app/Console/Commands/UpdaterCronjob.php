@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
 use Updater\Events\UpdaterCronjobTriggered;
+use Updater\Events\ReceivedPageCount;
 
 class UpdaterCronjob extends Command
 {
@@ -44,8 +45,6 @@ class UpdaterCronjob extends Command
         Log::info('[COMMAND] [UPDATER:CRONJOB] command triggered');
 
         // Fire the event.
-        $value = event(new UpdaterCronjobTriggered());
-
-        dd($value);
+        $value = event(new ReceivedPageCount(10));
     }
 }
