@@ -4,12 +4,13 @@ namespace Updater\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 use Symfony\Component\DomCrawler\Crawler;
 
 use Updater\Updater\URL;
 use Updater\Events\HandleCrawlPageCount;
-use Illuminate\Support\Facades\Log;
+use Updater\Events\ReceivedPageCount;
 
 class CrawlPageCount implements ShouldQueue
 {
@@ -56,8 +57,8 @@ class CrawlPageCount implements ShouldQueue
             // Get the page count.
             $pageCount = intval($crawler->text());
 
-            // Log it for now.
-            Log::info('[' . $event->lettre . '] ' . $pageCount);
+            // Trigger the event.
+            event(new ReceivedPageCount($event->lettre, $pageCount));
         }
     }
 

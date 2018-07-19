@@ -8,8 +8,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Symfony\Component\DomCrawler\Crawler;
 
 use Updater\Updater\URL;
+use Updater\Events\HandleCrawlListOfFonts;
+use Illuminate\Support\Facades\Log;
+use Updater\Events\HandleCrawlFontInformation;
 
-class CrawlListOfFonts
+class CrawlListOfFonts implements ShouldQueue
 {
     /**
      * 
@@ -63,11 +66,11 @@ class CrawlListOfFonts
             $crawler = $crawler->filter('.preview > a');
 
             // Loop through each node.
-            dd($crawler->each(function (Crawler $node) {
-
-                // Echo it for now.
-                echo $node->attr('href') . PHP_EOL;
-            }));
+            $crawler->each(function (Crawler $node) {
+                
+                // Call the event.
+                event(new HandleCrawlFontInformation($node->attr('href')));
+            });
         }
     }
 
@@ -79,7 +82,7 @@ class CrawlListOfFonts
     public function subscribe($events)
     {
         $events->listen(
-            'Updater\Events\UpdaterCronjobTriggered',
+            HandleCrawlListOfFonts::class,
             'Updater\Listeners\CrawlListOfFonts@handle'
         );
     }

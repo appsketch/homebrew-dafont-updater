@@ -4,9 +4,10 @@ namespace Updater\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Log;
 
-class GenerateSha256Hash
+use Updater\Events\ZipFileDownloaded;
+
+class GenerateSha256Hash implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -18,11 +19,6 @@ class GenerateSha256Hash
     {
         // The cask.
         $cask = $event->cask;
-
-        // Log information.
-        Log::info('Generating sha256 hash.', [
-            'name' => $cask->name
-        ]);
 
         // Generate the SHA256 hash.
         $cask->sha256 = hash_file('sha256', storage_path('app/' . $cask->path . $cask->zip_name));
@@ -39,7 +35,7 @@ class GenerateSha256Hash
     public function subscribe($events)
     {
         $events->listen(
-            '',
+            ZipFileDownloaded::class,
             'Updater\Listeners\GenerateSha256Hash@handle'
         );
     }

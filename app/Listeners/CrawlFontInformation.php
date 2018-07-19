@@ -11,8 +11,10 @@ use Symfony\Component\DomCrawler\Crawler;
 
 use Updater\Models\Cask;
 use Updater\Updater\URL;
+use Updater\Events\HandleCrawlFontInformation;
+use Updater\Events\FontInformationCrawled;
 
-class CrawlFontInformation
+class CrawlFontInformation implements ShouldQueue
 {
     private $url;
 
@@ -70,6 +72,9 @@ class CrawlFontInformation
     
             // Save the cask file.
             $cask->save();
+
+            // Fire the event.
+            event(new FontInformationCrawled($cask));
         }
     }
 
@@ -81,7 +86,7 @@ class CrawlFontInformation
     public function subscribe($events)
     {
         $events->listen(
-            '',
+            HandleCrawlFontInformation::class,
             'Updater\Listeners\CrawlFontInformation@handle'
         );
     }

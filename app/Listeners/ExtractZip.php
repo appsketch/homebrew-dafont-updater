@@ -4,10 +4,13 @@ namespace Updater\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Chumper\Zipper\Facades\Zipper;
-use Updater\Enumerations\Font;
 
-class ExtractZip
+use Chumper\Zipper\Facades\Zipper;
+
+use Updater\Events\ZipFileDownloaded;
+use Updater\Events\ZipFileExtracted;
+
+class ExtractZip implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -21,15 +24,10 @@ class ExtractZip
         $cask = $event->cask;
 
         // Zipper object.
-        $zipper = Zipper::make(storage_path('app/' . $cask->path . $cask->zip_name));
+        $zipper = Zipper::make(storage_path('app/' . $cask->path . $cask->zip_name))->extractTo(storage_path('app/' . $cask->path . $cask->slug));
 
-        // Remove files that aren't fonts.
-        $zipper->remove(array_filter($zipper->listFiles(), function($file) {
-            return !Font::isFont($file);
-        }));
-        
-        // Unzip the downloaded zip file.
-        $zipper->extractTo(storage_path('app/' . $cask->path . $cask->slug));
+        // Call the event.
+        event(new ZipFileExtracted($cask));
     }
 
     /**
@@ -40,7 +38,7 @@ class ExtractZip
     public function subscribe($events)
     {
         $events->listen(
-            '',
+            ZipFileDownloaded::class,
             'Updater\Listeners\ExtractZip@handle'
         );
     }

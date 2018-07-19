@@ -4,11 +4,12 @@ namespace Updater\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+
 use Updater\Updater\Directory;
 use Updater\Events\UpdaterGenerateAllTriggered;
 use Updater\Events\HandleCrawlPageCount;
 
-class CrawlAllPageCount
+class CrawlAllPageCount implements ShouldQueue
 {
     /**
      * 
@@ -23,7 +24,8 @@ class CrawlAllPageCount
     public function __construct()
     {
         // All the lettres to crawl.
-        $this->alphabet = Directory::alphabet(false);
+        // $this->alphabet = Directory::alphabet(false);
+        $this->alphabet = ['x'];
     }
 
     /**

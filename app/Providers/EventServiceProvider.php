@@ -21,6 +21,7 @@ use Updater\Listeners\CrawlListOfFonts;
 use Updater\Listeners\CrawlPageCount;
 use Updater\Listeners\CrawlAllPageCount;
 use Updater\Events\HandleCrawlPageCount;
+use Updater\Listeners\CrawlAllListOfFonts;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -42,6 +43,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $subscribe = [
+        CrawlAllListOfFonts::class,
         CrawlAllPageCount::class,
         CrawlFontInformation::class,
         CrawlListOfFonts::class,

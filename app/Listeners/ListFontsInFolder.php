@@ -6,7 +6,10 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 
-class ListFontsInFolder
+use Updater\Enumerations\Font;
+use Updater\Events\ZipFileExtracted;
+
+class ListFontsInFolder implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -31,6 +34,12 @@ class ListFontsInFolder
                 return str_replace($cask->path . $cask->slug . DIRECTORY_SEPARATOR, null, $font);
             }, $fonts);
 
+            // Filter non font files.
+            $fonts = array_filter($fonts, function($file) {
+                // Check if the file is a font.
+                return Font::isFont($file);
+            });
+
             // Sort the fonts.
             $fonts = array_values(array_sort($fonts));
 
@@ -50,7 +59,7 @@ class ListFontsInFolder
     public function subscribe($events)
     {
         $events->listen(
-            '',
+            ZipFileExtracted::class,
             'Updater\Listeners\ListFontsInFolder@handle'
         );
     }
