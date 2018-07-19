@@ -3,7 +3,10 @@
 namespace Updater\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 use Cocur\Slugify\Bridge\Laravel\SlugifyFacade as Slugify;
+
+use Updater\Updater\Directory;
 
 class Cask extends Model
 {
@@ -55,7 +58,11 @@ class Cask extends Model
      */
     public function getLettreAttribute()
     {
-        return strtoupper($this->name[0]);
+        // Get the first character uppercased.
+        $first = strtoupper($this->name[0]);
+        
+        // Return the lettre.
+        return in_array($first, Directory::alphabet()) ? $first : '#';
     }
 
     /**
