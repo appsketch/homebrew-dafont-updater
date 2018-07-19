@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 use Updater\Updater\Directory;
+use Updater\Events\FontsInFolderListed;
 
 class GenerateCaskFile
 {
@@ -34,7 +35,7 @@ class GenerateCaskFile
     public function subscribe($events)
     {
         $events->listen(
-            '',
+            FontsInFolderListed::class,
             'Updater\Listeners\GenerateCaskFile@handle'
         );
     }

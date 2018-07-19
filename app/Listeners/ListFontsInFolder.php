@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Updater\Enumerations\Font;
 use Updater\Events\ZipFileExtracted;
+use Updater\Events\FontsInFolderListed;
 
 class ListFontsInFolder implements ShouldQueue
 {
@@ -48,6 +49,9 @@ class ListFontsInFolder implements ShouldQueue
 
             // Save the cask.
             $cask->save();
+
+            // Call the event.
+            event(new FontsInFolderListed($cask));
         }
     }
 
