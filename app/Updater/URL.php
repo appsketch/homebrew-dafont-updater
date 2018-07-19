@@ -14,14 +14,14 @@ class URL
      * 
      * @var  array
      */
-    private $query = [];
+    public $query = [];
 
     /**
      * The URL without the query string.
      * 
      * @var  string
      */
-    private $url;
+    public $url;
 
     /**
      * Set nup query
@@ -105,7 +105,7 @@ class URL
         $this->url = Self::$DAFONT_URL . 'alpha.php';
         
         // Add lettre to the query array.
-        $this->query = array_set($this->query, 'lettre', urlencode($lettre));
+        $this->query = array_set($this->query, 'lettre', $lettre);
 
         // Forget the nup key.
         array_forget($this->query, 'nup');

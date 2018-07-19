@@ -23,14 +23,16 @@
     19 => 'Illuminate\\Translation\\TranslationServiceProvider',
     20 => 'Illuminate\\Validation\\ValidationServiceProvider',
     21 => 'Illuminate\\View\\ViewServiceProvider',
-    22 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    23 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    24 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    25 => 'Updater\\Providers\\AppServiceProvider',
-    26 => 'Updater\\Providers\\AuthServiceProvider',
-    27 => 'Updater\\Providers\\EventServiceProvider',
-    28 => 'Updater\\Providers\\RouteServiceProvider',
+    22 => 'Chumper\\Zipper\\ZipperServiceProvider',
+    23 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    24 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    25 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    26 => 'Updater\\Providers\\AppServiceProvider',
+    27 => 'Updater\\Providers\\AuthServiceProvider',
+    28 => 'Updater\\Providers\\EventServiceProvider',
     29 => 'Updater\\Providers\\GitPHPServiceProvider',
+    30 => 'Updater\\Providers\\RouteServiceProvider',
+    31 => 'Updater\\Providers\\SlugifyServiceProvider',
   ),
   'eager' => 
   array (
@@ -44,12 +46,13 @@
     7 => 'Illuminate\\Pagination\\PaginationServiceProvider',
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
-    10 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
-    11 => 'Updater\\Providers\\AppServiceProvider',
-    12 => 'Updater\\Providers\\AuthServiceProvider',
-    13 => 'Updater\\Providers\\EventServiceProvider',
-    14 => 'Updater\\Providers\\RouteServiceProvider',
+    10 => 'Chumper\\Zipper\\ZipperServiceProvider',
+    11 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+    12 => 'Updater\\Providers\\AppServiceProvider',
+    13 => 'Updater\\Providers\\AuthServiceProvider',
+    14 => 'Updater\\Providers\\EventServiceProvider',
     15 => 'Updater\\Providers\\GitPHPServiceProvider',
+    16 => 'Updater\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
@@ -154,6 +157,7 @@
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'NunoMaduro\\Collision\\Contracts\\Provider' => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    'slugify' => 'Updater\\Providers\\SlugifyServiceProvider',
   ),
   'when' => 
   array (
@@ -197,6 +201,9 @@
     array (
     ),
     'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => 
+    array (
+    ),
+    'Updater\\Providers\\SlugifyServiceProvider' => 
     array (
     ),
   ),

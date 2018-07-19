@@ -5,23 +5,23 @@ namespace Updater\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
-use Updater\Events\UpdaterInitializeTriggered;
+use Updater\Events\UpdaterGenerateAllTriggered;
 
-class UpdaterInitialize extends Command
+class UpdaterGenerateAll extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'updater:initialize';
+    protected $signature = 'updater:generate-all';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Initialize the updater';
+    protected $description = 'Generate all cask files';
 
     /**
      * Create a new command instance.
@@ -41,9 +41,9 @@ class UpdaterInitialize extends Command
     public function handle()
     {
         // Log information.
-        Log::info('[COMMAND] [UPDATER:INITIALIZE] command triggered');
+        Log::info('[COMMAND] [UPDATER:GENERATE-ALL] command triggered');
 
         // Fire the event.
-        event(new UpdaterInitializeTriggered());
+        event(new UpdaterGenerateAllTriggered());
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Updater\Updater;
 
-use Illuminate\Support\Facades\Storage;
-
 class Directory
 {
     /**
@@ -41,18 +39,27 @@ class Directory
     }
 
     /**
-     * Create directory if not exists.
-     * 
-     * @param  string  $path  Directory to create.
-     * @return void
+     * Get the cask path.
      */
-    public static function createDirectory($path)
+    public static function getCaskPath()
     {
-        // Check if the folder doesn't exists.
-        if(!in_array($path, Storage::directories()))
-        {
-            // Create the folder.
-            Storage::makeDirectory($path);
-        }
+        return implode(DIRECTORY_SEPARATOR, [
+            env('HOMEBREW_DAFONT_GIT_DIRECTORY'),
+            'Casks',
+            ''
+        ]);
+    }
+
+    /**
+     * Generate path
+     */
+    public function getZipPath($lettre, $slug)
+    {
+        return implode(DIRECTORY_SEPARATOR, [
+            env('HOMEBREW_DAFONT_ZIP_DIRECTORY'),
+            $lettre,
+            $slug,
+            ''
+        ]);
     }
 }

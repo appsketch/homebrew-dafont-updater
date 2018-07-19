@@ -5,7 +5,9 @@ namespace Updater\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use Updater\Console\Commands\UpdaterCronjob;
 use Updater\Console\Commands\UpdaterInitialize;
+use Updater\Console\Commands\UpdaterGenerateAll;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +17,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        UpdaterCronjob::class,
+        UpdaterGenerateAll::class,
         UpdaterInitialize::class,
     ];
 
@@ -26,7 +30,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        // Run the updater cronjob command every day at 2 am.
+        $schedule->command(UpdaterCronjob::class)->dailyAt('2:00');
     }
 
     /**

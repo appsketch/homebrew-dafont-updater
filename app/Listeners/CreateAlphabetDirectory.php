@@ -5,6 +5,7 @@ namespace Updater\Listeners;
 use Updater\Events\UpdaterInitializeTriggered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Storage;
 
 use Updater\Updater\Directory;
 
@@ -35,7 +36,7 @@ class CreateAlphabetDirectory
         foreach($folders as $folder)
         {
             // Create the directory if it doens't exists.
-            Directory::createDirectory(ENV('HOMEBREW_DAFONT_ZIP_DIRECTORY') . DIRECTORY_SEPARATOR . $folder);
+            Storage::makeDirectory(ENV('HOMEBREW_DAFONT_ZIP_DIRECTORY') . DIRECTORY_SEPARATOR . $folder);
         }
     }
 }

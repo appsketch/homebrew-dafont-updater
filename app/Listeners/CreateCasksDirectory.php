@@ -5,6 +5,7 @@ namespace Updater\Listeners;
 use Updater\Events\UpdaterInitializeTriggered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Storage;
 
 use Updater\Updater\Directory;
 
@@ -29,6 +30,6 @@ class CreateCasksDirectory
     public function handle(UpdaterInitializeTriggered $event)
     {
         // Create the Casks directory if it doens't exists.
-        Directory::createDirectory(ENV('HOMEBREW_DAFONT_GIT_DIRECTORY') . DIRECTORY_SEPARATOR . 'Casks');
+        Storage::makeDirectory(ENV('HOMEBREW_DAFONT_GIT_DIRECTORY') . DIRECTORY_SEPARATOR . 'Casks');
     }
 }

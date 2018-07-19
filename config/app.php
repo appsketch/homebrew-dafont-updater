@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Amsterdam',
 
     /*
     |--------------------------------------------------------------------------
@@ -158,8 +158,9 @@ return [
         Updater\Providers\AuthServiceProvider::class,
         // Updater\Providers\BroadcastServiceProvider::class,
         Updater\Providers\EventServiceProvider::class,
-        Updater\Providers\RouteServiceProvider::class,
         Updater\Providers\GitPHPServiceProvider::class,
+        Updater\Providers\RouteServiceProvider::class,
+        Updater\Providers\SlugifyServiceProvider::class,
 
     ],
 
