@@ -17,6 +17,11 @@ class Font extends Enum
     private const TTF = '.ttf';
 
     /**
+     * FON File.
+     */
+    private const FON = '.fon';
+
+    /**
      * Check if the given file is a font file.
      */
     public static function isFont($file)
