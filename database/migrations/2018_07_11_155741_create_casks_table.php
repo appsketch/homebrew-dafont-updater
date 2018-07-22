@@ -18,10 +18,10 @@ class CreateCasksTable extends Migration
         Schema::create('casks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('version', [Version::LATEST()])->default(Version::LATEST());
+            $table->enum('version', Version::toArray())->default(Version::LATEST());
             $table->string('sha256', 64)->nullable();
-            $table->string('url');
-            $table->string('homepage');
+            $table->string('url')->unique();
+            $table->string('homepage')->unique();
             $table->json('fonts')->nullable();
             $table->timestampsTz();
         });
