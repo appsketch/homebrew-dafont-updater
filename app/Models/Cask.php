@@ -70,7 +70,14 @@ class Cask extends Model
      */
     public function getSlugAttribute()
     {
-        return Slugify::slugify($this->name);
+        // Parse the URL.
+        $parsed = parse_url($this->url);
+
+        // Parse the query into an array.
+        parse_str($parsed['query'], $query);
+
+        // Return a slug variant.
+        return Slugify::slugify($query['f']);
     }
 
     /**
