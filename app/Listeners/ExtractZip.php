@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 use Chumper\Zipper\Facades\Zipper;
 
-use Updater\Events\ZipFileDownloaded;
 use Updater\Events\ZipFileExtracted;
 
 class ExtractZip implements ShouldQueue
@@ -32,18 +31,5 @@ class ExtractZip implements ShouldQueue
 
         // Call the event.
         event(new ZipFileExtracted($cask));
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            ZipFileDownloaded::class,
-            'Updater\Listeners\ExtractZip@handle'
-        );
     }
 }

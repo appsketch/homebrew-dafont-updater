@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-use Updater\Events\FontInformationCrawled;
 use Updater\Events\ZipFileDownloaded;
 
 class DownloadZipFromDafont implements ShouldQueue
@@ -28,18 +27,5 @@ class DownloadZipFromDafont implements ShouldQueue
 
         // Call the event.
         event(new ZipFileDownloaded($cask));
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            FontInformationCrawled::class,
-            'Updater\Listeners\DownloadZipFromDafont@handle'
-        );
     }
 }

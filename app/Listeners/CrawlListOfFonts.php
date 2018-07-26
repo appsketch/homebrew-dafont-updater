@@ -2,14 +2,13 @@
 
 namespace Updater\Listeners;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 use Symfony\Component\DomCrawler\Crawler;
 
 use Updater\Updater\URL;
-use Updater\Events\HandleCrawlListOfFonts;
-use Illuminate\Support\Facades\Log;
 use Updater\Events\HandleCrawlFontInformation;
 
 class CrawlListOfFonts implements ShouldQueue
@@ -72,18 +71,5 @@ class CrawlListOfFonts implements ShouldQueue
                 event(new HandleCrawlFontInformation($node->attr('href')));
             });
         }
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            HandleCrawlListOfFonts::class,
-            'Updater\Listeners\CrawlListOfFonts@handle'
-        );
     }
 }

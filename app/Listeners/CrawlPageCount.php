@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Log;
 use Symfony\Component\DomCrawler\Crawler;
 
 use Updater\Updater\URL;
-use Updater\Events\HandleCrawlPageCount;
 use Updater\Events\ReceivedPageCount;
 
 class CrawlPageCount implements ShouldQueue
@@ -60,18 +59,5 @@ class CrawlPageCount implements ShouldQueue
             // Trigger the event.
             event(new ReceivedPageCount($pageCount, $event->lettre));
         }
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            HandleCrawlPageCount::class,
-            'Updater\Listeners\CrawlPageCount@handle'
-        );
     }
 }

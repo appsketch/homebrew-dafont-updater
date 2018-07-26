@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 
 use Updater\Enumerations\Font;
-use Updater\Events\ZipFileExtracted;
 use Updater\Events\FontsInFolderListed;
 
 class ListFontsInFolder implements ShouldQueue
@@ -53,18 +52,5 @@ class ListFontsInFolder implements ShouldQueue
             // Call the event.
             event(new FontsInFolderListed($cask));
         }
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            ZipFileExtracted::class,
-            'Updater\Listeners\ListFontsInFolder@handle'
-        );
     }
 }

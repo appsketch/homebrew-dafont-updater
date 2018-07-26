@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Log;
 
 use Symfony\Component\DomCrawler\Crawler;
 
-use Updater\Models\Cask;
 use Updater\Updater\URL;
-use Updater\Events\HandleCrawlFontInformation;
+use Updater\Models\Cask;
 use Updater\Events\FontInformationCrawled;
 
 class CrawlFontInformation implements ShouldQueue
 {
+    /**
+     * 
+     */
     private $url;
 
     public function __construct()
@@ -50,8 +52,12 @@ class CrawlFontInformation implements ShouldQueue
             // Crawler object.
             $crawler = new Crawler($content);
     
+            // The crawled name.
+            $crawled_name = $crawler->filter('meta')->first()->attr('content');
+            
             // The cask name.
-            $cask_name = $crawler->filter('h1')->first()->text();
+            $crawled_name = str_replace(" Font | dafont.com", "", $crawled_name);
+            $cask_name = str_replace(" | dafont.com", "", $crawled_name);
     
             // The cask download url.
             $cask_url = str_replace("//", "https://", $crawler->filter('.dl')->first()->attr('href'));
@@ -76,18 +82,5 @@ class CrawlFontInformation implements ShouldQueue
             // Fire the event.
             event(new FontInformationCrawled($cask));
         }
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            HandleCrawlFontInformation::class,
-            'Updater\Listeners\CrawlFontInformation@handle'
-        );
     }
 }

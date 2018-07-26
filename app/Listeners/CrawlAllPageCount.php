@@ -5,7 +5,6 @@ namespace Updater\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-use Updater\Events\UpdaterGenerateAllTriggered;
 use Updater\Events\HandleCrawlPageCount;
 
 class CrawlAllPageCount implements ShouldQueue
@@ -40,18 +39,5 @@ class CrawlAllPageCount implements ShouldQueue
             // Trigger the handle crawl page count event.
             event(new HandleCrawlPageCount($lettre));
         }
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            UpdaterGenerateAllTriggered::class,
-            'Updater\Listeners\CrawlAllPageCount@handle'
-        );
     }
 }

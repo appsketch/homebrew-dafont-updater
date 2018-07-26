@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
 use Updater\Events\HandleCrawlListOfFonts;
-use Updater\Events\ReceivedPageCount;
 
 class CrawlAllListOfFonts implements ShouldQueue
 {
@@ -16,10 +15,7 @@ class CrawlAllListOfFonts implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct() {}
 
     /**
      * Handle the event.
@@ -35,18 +31,5 @@ class CrawlAllListOfFonts implements ShouldQueue
             // Call the event.
             event(new HandleCrawlListOfFonts($event->lettre, $page));
         }
-    }
-
-    /**
-     * Register the listeners for the subscriber.
-     *
-     * @param  \Illuminate\Events\Dispatcher  $events
-     */
-    public function subscribe($events)
-    {
-        $events->listen(
-            ReceivedPageCount::class,
-            'Updater\Listeners\CrawlAllListOfFonts@handle'
-        );
     }
 }
