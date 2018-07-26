@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 use Cocur\Slugify\Bridge\Laravel\SlugifyFacade as Slugify;
 
-use Updater\Updater\Directory;
-
 class Cask extends Model
 {
     /**
@@ -62,7 +60,7 @@ class Cask extends Model
         $first = strtoupper($this->name[0]);
         
         // Return the lettre.
-        return in_array($first, Directory::alphabet()) ? $first : '#';
+        return in_array($first, alphabet()) ? $first : '#';
     }
 
     /**

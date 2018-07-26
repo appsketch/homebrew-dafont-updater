@@ -7,8 +7,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 
-use Updater\Updater\Directory;
-
 class CreateAlphabetDirectory
 {
     /**
@@ -30,7 +28,7 @@ class CreateAlphabetDirectory
     public function handle(UpdaterInitializeTriggered $event)
     {
         // All the folders.
-        $folders = Directory::alphabet();
+        $folders = alphabet();
 
         // Loop through each folder.
         foreach($folders as $folder)

@@ -17,7 +17,7 @@ class AlphabetTest extends TestCase
      */
     public function testAlphabetLength()
     {
-        $this->assertCount(27, Directory::alphabet());
-        $this->assertCount(26, Directory::alphabet(true, false));
+        $this->assertCount(27, alphabet());
+        $this->assertCount(26, alphabet(true, false));
     }
 }
