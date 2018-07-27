@@ -159,6 +159,7 @@ return [
         // Updater\Providers\BroadcastServiceProvider::class,
         Updater\Providers\EventServiceProvider::class,
         Updater\Providers\GitPHPServiceProvider::class,
+        Updater\Providers\QueueServiceProvider::class,
         Updater\Providers\RouteServiceProvider::class,
         Updater\Providers\SlugifyServiceProvider::class,
 

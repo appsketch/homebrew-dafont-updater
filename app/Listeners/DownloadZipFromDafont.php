@@ -25,6 +25,6 @@ class DownloadZipFromDafont
     public function handle(FontInformationCrawled $event)
     {
         // Dispatch the job.
-        DownloadZipFromDafontJob::dispatch($event->cask);
+        DownloadZipFromDafontJob::dispatch($event->cask)->onQueue('throttle');
     }
 }

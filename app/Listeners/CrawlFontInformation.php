@@ -25,6 +25,6 @@ class CrawlFontInformation
     public function handle(HandleCrawlFontInformation $event)
     {
         // Dispatch the job.
-        CrawlFontInformationJob::dispatch($event->font);
+        CrawlFontInformationJob::dispatch($event->font)->onQueue('throttle');
     }
 }

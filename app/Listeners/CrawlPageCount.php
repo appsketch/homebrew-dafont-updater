@@ -23,6 +23,6 @@ class CrawlPageCount
     public function handle(HandleCrawlPageCount $event)
     {
         // Dispatch the job.
-        CrawlPageCountJob::dispatch($event->lettre);
+        CrawlPageCountJob::dispatch($event->lettre)->onQueue('throttle');
     }
 }

@@ -20,6 +20,6 @@ class CrawlListOfFonts
     public function handle(HandleCrawlListOfFonts $event)
     {
         // Dispatch the job.
-        CrawlListOfFontsJob::dispatch($event->lettre, $event->page);
+        CrawlListOfFontsJob::dispatch($event->lettre, $event->page)->onQueue('throttle');
     }
 }

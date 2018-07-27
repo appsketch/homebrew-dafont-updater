@@ -31,8 +31,9 @@
     27 => 'Updater\\Providers\\AuthServiceProvider',
     28 => 'Updater\\Providers\\EventServiceProvider',
     29 => 'Updater\\Providers\\GitPHPServiceProvider',
-    30 => 'Updater\\Providers\\RouteServiceProvider',
-    31 => 'Updater\\Providers\\SlugifyServiceProvider',
+    30 => 'Updater\\Providers\\QueueServiceProvider',
+    31 => 'Updater\\Providers\\RouteServiceProvider',
+    32 => 'Updater\\Providers\\SlugifyServiceProvider',
   ),
   'eager' => 
   array (
@@ -52,7 +53,8 @@
     13 => 'Updater\\Providers\\AuthServiceProvider',
     14 => 'Updater\\Providers\\EventServiceProvider',
     15 => 'Updater\\Providers\\GitPHPServiceProvider',
-    16 => 'Updater\\Providers\\RouteServiceProvider',
+    16 => 'Updater\\Providers\\QueueServiceProvider',
+    17 => 'Updater\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
