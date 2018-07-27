@@ -4,12 +4,9 @@ namespace Updater\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Storage;
+use Updater\Jobs\GenerateCaskFileJob;
 
-use Updater\Updater\Directory;
-
-class GenerateCaskFile implements ShouldQueue
+class GenerateCaskFile
 {
     /**
      * Handle the event.
@@ -19,10 +16,7 @@ class GenerateCaskFile implements ShouldQueue
      */
     public function handle($event)
     {
-        // The cask.
-        $cask = $event->cask;
-
-        // Generate the view file.
-        Storage::put(Directory::getCaskPath() . $cask->cask_name, View::make('cask', $cask));
+        // Dispatch the job.
+        GenerateCaskFileJob::dispatch($event->cask);
     }
 }

@@ -4,13 +4,9 @@ namespace Updater\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Storage;
+use Updater\Jobs\ExtractZipJob;
 
-use Chumper\Zipper\Facades\Zipper;
-
-use Updater\Events\ZipFileExtracted;
-
-class ExtractZip implements ShouldQueue
+class ExtractZip
 {
     /**
      * Handle the event.
@@ -20,16 +16,7 @@ class ExtractZip implements ShouldQueue
      */
     public function handle($event)
     {
-        // The cask.
-        $cask = $event->cask;
-
-        // Delete the directory if exists.
-        Storage::deleteDirectory($cask->path . $cask->slug);
-
-        // Zipper object.
-        $zipper = Zipper::make(storage_path('app/' . $cask->path . $cask->zip_name))->extractTo(storage_path('app/' . $cask->path . $cask->slug));
-
-        // Call the event.
-        event(new ZipFileExtracted($cask));
+        // Dispatch the job.
+        ExtractZipJob::dispatch($event->cask);
     }
 }

@@ -5,7 +5,8 @@ namespace Updater\Listeners;
 use Updater\Events\UpdaterInitializeTriggered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Storage;
+
+use Updater\Jobs\CreateAlphabetDirectoryJob;
 
 class CreateAlphabetDirectory
 {
@@ -24,14 +25,7 @@ class CreateAlphabetDirectory
      */
     public function handle(UpdaterInitializeTriggered $event)
     {
-        // All the folders.
-        $folders = alphabet();
-
-        // Loop through each folder.
-        foreach($folders as $folder)
-        {
-            // Create the directory if it doens't exists.
-            Storage::makeDirectory(ENV('HOMEBREW_DAFONT_ZIP_DIRECTORY') . DIRECTORY_SEPARATOR . $folder);
-        }
+        // Dispatch the job.
+        CreateAlphabetDirectoryJob::dispatch();
     }
 }

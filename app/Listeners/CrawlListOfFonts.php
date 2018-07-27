@@ -2,27 +2,13 @@
 
 namespace Updater\Listeners;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Updater\Jobs\CrawlListOfFontsJob;
 
-use Symfony\Component\DomCrawler\Crawler;
-
-use Updater\Updater\URL;
-use Updater\Events\HandleCrawlFontInformation;
-
-class CrawlListOfFonts implements ShouldQueue
+class CrawlListOfFonts
 {
-    /**
-     * 
-     */
-    private $url;
-
-    public function __construct()
-    {
-        // Request font information.
-        $this->url = new URL();
-    }
+    public function __construct() {}
 
     /**
      * Handle the event.
@@ -32,44 +18,7 @@ class CrawlListOfFonts implements ShouldQueue
      */
     public function handle($event)
     {
-        // Check if property lettre exists.
-        if (isset($event->lettre))
-        {
-            // Set the lettre to crawl.
-            $this->url->alpha($event->lettre);
-        }
-        
-        // If the lettre is not set.
-        else
-        {
-            // Crawl the everythin/updates page.
-            $this->url->everything();
-        }
-
-        // Set the page to crawl.
-        $this->url->page($event->page);
-
-        // Request it.
-        $response = $this->url->request();
-
-        // Check if succeed.
-        if ($response->getStatusCode() === 200)
-        {
-            // Page content.
-            $content = $response->getBody()->getContents();
-
-            // Crawler object.
-            $crawler = new Crawler($content);
-
-            // Filter the dom.
-            $crawler = $crawler->filter('.preview > a');
-
-            // Loop through each node.
-            $crawler->each(function (Crawler $node) {
-                
-                // Call the event.
-                event(new HandleCrawlFontInformation($node->attr('href')));
-            });
-        }
+        // Dispatch the job.
+        CrawlListOfFontsJob::dispatch($event->lettre, $event->page);
     }
 }

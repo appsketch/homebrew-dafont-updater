@@ -4,8 +4,9 @@ namespace Updater\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Updater\Jobs\GenerateSha256HashJob;
 
-class GenerateSha256Hash implements ShouldQueue
+class GenerateSha256Hash
 {
     /**
      * Handle the event.
@@ -15,13 +16,7 @@ class GenerateSha256Hash implements ShouldQueue
      */
     public function handle($event)
     {
-        // The cask.
-        $cask = $event->cask;
-
-        // Generate the SHA256 hash.
-        $cask->sha256 = hash_file('sha256', storage_path('app/' . $cask->path . $cask->zip_name));
-
-        // Save the cask.
-        $cask->save();
+        // Dispatch the event.
+        GenerateSha256HashJob::dispatch($event->cask);
     }
 }
