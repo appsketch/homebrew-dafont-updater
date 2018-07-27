@@ -7,6 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Storage;
 
 class CreateCasksDirectoryJob implements ShouldQueue
 {
@@ -27,6 +28,6 @@ class CreateCasksDirectoryJob implements ShouldQueue
     public function handle()
     {
         // Create the Casks directory if it doens't exists.
-        Storage::makeDirectory(ENV('HOMEBREW_DAFONT_GIT_DIRECTORY') . DIRECTORY_SEPARATOR . 'Casks');
+        Storage::disk('local')->makeDirectory(env('HOMEBREW_DAFONT_GIT_DIRECTORY') . DIRECTORY_SEPARATOR . 'Casks');
     }
 }

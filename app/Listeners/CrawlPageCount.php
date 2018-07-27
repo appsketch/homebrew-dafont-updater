@@ -5,6 +5,7 @@ namespace Updater\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Updater\Jobs\CrawlPageCountJob;
+use Updater\Events\HandleCrawlPageCount;
 
 class CrawlPageCount
 {
@@ -16,10 +17,10 @@ class CrawlPageCount
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  HandleCrawlPageCount  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(HandleCrawlPageCount $event)
     {
         // Dispatch the job.
         CrawlPageCountJob::dispatch($event->lettre);

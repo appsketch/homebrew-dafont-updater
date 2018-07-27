@@ -5,6 +5,7 @@ namespace Updater\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Updater\Jobs\CrawlAllPageCountJob;
+use Updater\Events\UpdaterGenerateAllTriggered;
 
 class CrawlAllPageCount
 {
@@ -18,10 +19,10 @@ class CrawlAllPageCount
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  UpdaterGenerateAllTriggered  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(UpdaterGenerateAllTriggered $event)
     {
         // Dispatch the job.
         CrawlAllPageCountJob::dispatch();

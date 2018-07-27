@@ -5,6 +5,7 @@ namespace Updater\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Updater\Jobs\CrawlFontInformationJob;
+use Updater\Events\HandleCrawlFontInformation;
 
 class CrawlFontInformation
 {
@@ -18,10 +19,10 @@ class CrawlFontInformation
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  HandleCrawlFontInformation  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(HandleCrawlFontInformation $event)
     {
         // Dispatch the job.
         CrawlFontInformationJob::dispatch($event->font);

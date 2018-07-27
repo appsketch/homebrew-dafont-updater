@@ -5,6 +5,7 @@ namespace Updater\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Updater\Jobs\CrawlListOfFontsJob;
+use Updater\Events\HandleCrawlListOfFonts;
 
 class CrawlListOfFonts
 {
@@ -13,10 +14,10 @@ class CrawlListOfFonts
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  HandleCrawlListOfFonts  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(HandleCrawlListOfFonts $event)
     {
         // Dispatch the job.
         CrawlListOfFontsJob::dispatch($event->lettre, $event->page);

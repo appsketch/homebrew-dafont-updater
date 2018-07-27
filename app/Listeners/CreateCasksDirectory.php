@@ -2,6 +2,7 @@
 
 namespace Updater\Listeners;
 
+use Updater\Events\UpdaterInitializeTriggered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Updater\Jobs\CreateCasksDirectoryJob;

@@ -5,6 +5,7 @@ namespace Updater\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Updater\Jobs\DownloadZipFromDafontJob;
+use Updater\Events\FontInformationCrawled;
 
 class DownloadZipFromDafont
 {
@@ -18,10 +19,10 @@ class DownloadZipFromDafont
     /**
      * Handle download zip from Dafont.
      * 
-     * @param  object  $event
+     * @param  FontInformationCrawled  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(FontInformationCrawled $event)
     {
         // Dispatch the job.
         DownloadZipFromDafontJob::dispatch($event->cask);
