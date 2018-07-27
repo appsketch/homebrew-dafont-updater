@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Updater\Models\Cask;
 use Updater\Updater\Directory;
+use Updater\Events\CaskFileGenerated;
 
 class GenerateCaskFileJob implements ShouldQueue
 {
@@ -42,5 +43,8 @@ class GenerateCaskFileJob implements ShouldQueue
     {
         // Generate the view file.
         Storage::disk('local')->put(Directory::getCaskPath() . $this->cask->cask_name, View::make('cask', $this->cask));
+
+        // Fire the event.
+        event(new CaskFileGenerated($this->cask));
     }
 }

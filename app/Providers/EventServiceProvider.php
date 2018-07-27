@@ -19,6 +19,7 @@ use Updater\Events\ZipFileExtracted;
 
 use Updater\Listeners\CrawlAllListOfFonts;
 use Updater\Listeners\CrawlAllPageCount;
+use Updater\Listeners\CrawlEverything;
 use Updater\Listeners\CrawlFontInformation;
 use Updater\Listeners\CrawlListOfFonts;
 use Updater\Listeners\CrawlPageCount;
@@ -29,6 +30,7 @@ use Updater\Listeners\ExtractZip;
 use Updater\Listeners\GenerateCaskFile;
 use Updater\Listeners\GenerateSha256Hash;
 use Updater\Listeners\ListFontsInFolder;
+use Updater\Events\CaskFileGenerated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        CaskFileGenerated::class => [
+
+        ],
         FontInformationCrawled::class => [
             DownloadZipFromDafont::class
         ],
@@ -57,7 +62,7 @@ class EventServiceProvider extends ServiceProvider
             CrawlAllListOfFonts::class
         ],
         UpdaterCronjobTriggered::class => [
-
+            CrawlEverything::class
         ],
         UpdaterGenerateAllTriggered::class => [
             CrawlAllPageCount::class

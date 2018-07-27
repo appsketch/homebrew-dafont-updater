@@ -29,7 +29,7 @@ class CrawlAllListOfFontsJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(int $amountOfPages, string $lettre)
+    public function __construct(int $amountOfPages, string $lettre = null)
     {
         // Set the amount of pages to crawl.
         $this->amountOfPages = $amountOfPages;

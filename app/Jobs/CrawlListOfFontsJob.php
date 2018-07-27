@@ -37,7 +37,7 @@ class CrawlListOfFontsJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $lettre, int $page)
+    public function __construct(string $lettre = null, int $page)
     {
         // Request font information.
         $this->url = new URL();
