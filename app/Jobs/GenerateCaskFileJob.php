@@ -41,6 +41,6 @@ class GenerateCaskFileJob implements ShouldQueue
     public function handle()
     {
         // Generate the view file.
-        Storage::put(Directory::getCaskPath() . $this->cask->cask_name, View::make('cask', $this->cask));
+        Storage::disk('local')->put(Directory::getCaskPath() . $this->cask->cask_name, View::make('cask', $this->cask));
     }
 }
